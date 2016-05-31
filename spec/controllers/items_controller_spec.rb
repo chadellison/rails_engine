@@ -10,9 +10,9 @@ RSpec.describe Api::V1::ItemsController do
     it "shows items" do
 
       get :index, format: :json
-      items = JSON.parse(response.body, symbolize_names: true)
-      first_item = items.first
-      second_item = items.last
+      items_hash = JSON.parse(response.body, symbolize_names: true)
+      first_item = items_hash.first
+      second_item = items_hash.last
 
       expect(response).to have_http_status(:success)
       expect(first_item[:name]).to eq "shovel"
@@ -24,10 +24,10 @@ RSpec.describe Api::V1::ItemsController do
       id = @item.id
       get :show, format: :json, id: id
 
-      item = JSON.parse(response.body, symbolize_names: true)
+      item_hash = JSON.parse(response.body, symbolize_names: true)
       expect(response).to have_http_status(:success)
-      expect(item[:name]).to eq "shovel"
-      expect(item[:name]).to eq "shovel"
+      expect(item_hash[:name]).to eq "shovel"
+      expect(item_hash[:name]).to eq "shovel"
     end
   end
 end
