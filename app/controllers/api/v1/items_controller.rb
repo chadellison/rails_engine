@@ -6,7 +6,8 @@ class Api::V1::ItemsController < Api::ApiController
   end
 
   def show
-    respond_with Item.find(params[:id])
+    item = Item.find(params[:id])
+    respond_with ItemSerializer.new(item)
   end
 
   def find
