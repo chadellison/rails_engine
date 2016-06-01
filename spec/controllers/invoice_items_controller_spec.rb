@@ -19,7 +19,7 @@ RSpec.describe Api::V1::InvoiceItemsController do
       second_invoice = invoices_hash.last
 
       expect(response).to have_http_status(:success)
-      expect(first_invoice[:invoice_id]).to eq 1
+      expect(first_invoice[:invoice_id]).to eq @invoice.id
       expect(second_invoice[:quantity]).to eq 8
     end
   end
@@ -32,7 +32,7 @@ RSpec.describe Api::V1::InvoiceItemsController do
       invoice_hash = JSON.parse(response.body, symbolize_names: true)
       expect(response).to have_http_status(:success)
       expect(invoice_hash[:unit_price]).to eq 300
-      expect(invoice_hash[:invoice_id]).to eq 2
+      expect(invoice_hash[:invoice_id]).to eq @invoice.id
     end
   end
 

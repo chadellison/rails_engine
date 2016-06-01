@@ -5,7 +5,13 @@ Rails.application.routes.draw do
       get "items/find", to: "items#find"
       get "items/find_all", to: "items#find_all"
       get "items/random", to: "items#random"
+
+      get "items/:id/invoice_items", to: "items_invoice_items#index"
+      get "items/:id/merchant", to: "item_merchants#show"
       resources :items, only: [:index, :show]
+
+      get "merchants/:id/items", to: "merchant_items#index"
+      get "merchants/:id/invoices", to: "merchant_invoices#index"
 
       get "merchants/find", to: "merchants#find"
       get "merchants/find_all", to: "merchants#find_all"
@@ -15,21 +21,35 @@ Rails.application.routes.draw do
       get "customers/find", to: "customers#find"
       get "customers/find_all", to: "customers#find_all"
       get "customers/random", to: "customers#random"
+
+      get "customers/:id/invoices", to: "customer_invoices#index"
+      get "customers/:id/transactions", to: "customer_transactions#index"
       resources :customers, only: [:index, :show]
 
       get "transactions/find", to: "transactions#find"
       get "transactions/find_all", to: "transactions#find_all"
       get "transactions/random", to: "transactions#random"
+
+      get "transactions/:id/invoice", to: "transaction_invoice#show"
       resources :transactions, only: [:index, :show]
+
+      get "invoice/:id/transactions", to: "invoice_transactions#index"
+      get "invoice/:id/invoice_items", to: "invoice_invoice_items#index"
+      get "invoice/:id/items", to: "invoices_items#index"
+      get "invoice/:id/customer", to: "invoice_customers#show"
+      get "invoice/:id/merchant", to: "invoice_merchants#show"
 
       get "invoices/find", to: "invoices#find"
       get "invoices/find_all", to: "invoices#find_all"
       get "invoices/random", to: "invoices#random"
       resources :invoices, only: [:index, :show]
 
-      get "invoices/find", to: "invoice_items#find"
-      get "invoices/find_all", to: "invoice_items#find_all"
-      get "invoices/random", to: "invoice_items#random"
+      get "invoice_items/find", to: "invoice_items#find"
+      get "invoice_items/find_all", to: "invoice_items#find_all"
+      get "invoice_items/random", to: "invoice_items#random"
+
+      get "invoice_items/:id/invoice", to: "invoice_item_invoices#show"
+      get "invoice_items/:id/item", to: "invoice_item_items#show"
       resources :invoice_items, only: [:index, :show]
     end
   end
