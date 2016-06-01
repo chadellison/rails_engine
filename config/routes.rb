@@ -33,11 +33,11 @@ Rails.application.routes.draw do
       get "transactions/:id/invoice", to: "transaction_invoice#show"
       resources :transactions, only: [:index, :show]
 
-      get "invoice/:id/transactions", to: "invoice_transactions#index"
-      get "invoice/:id/invoice_items", to: "invoice_invoice_items#index"
-      get "invoice/:id/items", to: "invoices_items#index"
-      get "invoice/:id/customer", to: "invoice_customers#show"
-      get "invoice/:id/merchant", to: "invoice_merchants#show"
+      get "invoices/:id/transactions", to: "invoice_transactions#index"
+      get "invoices/:id/invoice_items", to: "invoice_invoice_items#index"
+      get "invoices/:id/items", to: "invoices_items#index"
+      get "invoices/:id/customer", to: "invoice_customers#show"
+      get "invoices/:id/merchant", to: "invoice_merchants#show"
 
       get "invoices/find", to: "invoices#find"
       get "invoices/find_all", to: "invoices#find_all"
