@@ -34,6 +34,18 @@ RSpec.describe Api::V1::TransactionsController do
     end
   end
 
+  describe "Get random" do
+    it "returns a random transaction" do
+      get :random, format: :json
+
+      transaction_hash = JSON.parse(response.body, symbolize_names: true)
+      expect(response).to have_http_status(:success)
+      assert transaction_hash[:invoice_id]
+      assert transaction_hash[:credit_card_number]
+      assert transaction_hash[:result] 
+    end
+  end
+
   describe "Get find shows all transactions according to a search criterion" do
     it "works for invoice_id" do
       get :find, invoice_id: 6, format: :json

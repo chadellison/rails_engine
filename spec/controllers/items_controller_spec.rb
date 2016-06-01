@@ -31,6 +31,16 @@ RSpec.describe Api::V1::ItemsController do
     end
   end
 
+  describe "Get random" do
+    it "returns a random item" do
+      get :random, format: :json
+
+      item_hash = JSON.parse(response.body, symbolize_names: true)
+      expect(response).to have_http_status(:success)
+      assert item_hash.all? { |attribute, value| attribute }
+    end
+  end
+
   describe "Get find shows all items according to a search criterion" do
     it "works for name" do
       get :find, name: @item.name, format: :json

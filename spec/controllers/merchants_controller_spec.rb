@@ -27,6 +27,16 @@ RSpec.describe Api::V1::MerchantsController do
     end
   end
 
+  describe "Get random" do
+    it "returns a random merchant" do
+      get :random, format: :json
+
+      merchant_hash = JSON.parse(response.body, symbolize_names: true)
+      expect(response).to have_http_status(:success)
+      assert merchant_hash.all? { |attribute, value| attribute }
+    end
+  end
+
   describe "Get find shows all merchants according to a search criterion" do
     it "works for name" do
       get :find, name: @merchant.name, format: :json

@@ -17,6 +17,10 @@ class Api::V1::MerchantsController < Api::ApiController
     respond_with Merchant.where(merchant_params)
   end
 
+  def random
+    respond_with Merchant.order("random()").first
+  end
+
   private
 
     def merchant_params
