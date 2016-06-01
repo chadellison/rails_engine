@@ -1,5 +1,5 @@
 class Api::V1::TransactionsController < Api::ApiController
-  respond_to :json, :xml
+  respond_to :json
 
   def index
     respond_with Transaction.all
