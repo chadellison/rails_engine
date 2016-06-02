@@ -17,7 +17,6 @@ RSpec.describe Api::V1::TransactionsController do
       expect(transactions_hash.first[:credit_card_number]).to eq "234324324324"
       expect(transactions_hash.first[:result]).to eq "success"
       expect(transactions_hash.last[:invoice_id]).to eq 10
-      expect(transactions_hash.last[:credit_card_expiration_date]).to eq "10"
       expect(transactions_hash.last[:result]).to eq "failed"
     end
   end
@@ -29,7 +28,6 @@ RSpec.describe Api::V1::TransactionsController do
       transaction_hash = JSON.parse(response.body, symbolize_names: true)
 
       expect(transaction_hash[:invoice_id]).to eq 6
-      expect(transaction_hash[:credit_card_expiration_date]).to eq "23"
       expect(transaction_hash[:result]).to eq "success"
     end
   end
@@ -42,7 +40,7 @@ RSpec.describe Api::V1::TransactionsController do
       expect(response).to have_http_status(:success)
       assert transaction_hash[:invoice_id]
       assert transaction_hash[:credit_card_number]
-      assert transaction_hash[:result] 
+      assert transaction_hash[:result]
     end
   end
 

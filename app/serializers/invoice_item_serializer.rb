@@ -1,7 +1,7 @@
-class ItemSerializer < ActiveModel::Serializer
+class InvoiceItemSerializer < ActiveModel::Serializer
   include ActionView::Helpers
 
-  attributes :id, :name, :merchant_id, :description, :unit_price
+  attributes :id, :invoice_id, :item_id, :quantity, :unit_price
 
   def unit_price
     number_to_currency(unit_price_in_cents, unit: "")
