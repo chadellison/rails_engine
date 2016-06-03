@@ -75,7 +75,7 @@ RSpec.describe Api::V1::ItemsController do
     end
 
     it "works for unit_price" do
-      get :find, unit_price: @item.unit_price, format: :json
+      get :find, unit_price: 36.00, format: :json
       item_hash = JSON.parse(response.body, symbolize_names: true)
       expect(item_hash[:name]).to eq "shovel"
     end
@@ -139,7 +139,7 @@ RSpec.describe Api::V1::ItemsController do
 
     it "works for unit_price" do
       Item.create(name: "box of rocks", unit_price: 9600)
-      get :find_all, unit_price: 9600, format: :json
+      get :find_all, unit_price: 96.00, format: :json
       items_hash = JSON.parse(response.body, symbolize_names: true)
       expect(items_hash.map do |item|
         item[:name]

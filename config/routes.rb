@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       get "items/:id/merchant", to: "item_merchants#show"
       get "items/most_revenue", to: "items_most_revenue#index"
       get "items/most_items", to: "most_items#index"
+      get "items/:id/best_day", to: "highest_sales_date#show"
       resources :items, only: [:index, :show]
 
 
@@ -31,7 +32,7 @@ Rails.application.routes.draw do
 
       get "customers/:id/invoices", to: "customer_invoices#index"
       get "customers/:id/transactions", to: "customer_transactions#index"
-      get "/api/v1/customers/:id/favorite_merchant", to: "customer_favorite_merchants#show"
+      get "customers/:id/favorite_merchant", to: "customer_favorite_merchants#show"
       resources :customers, only: [:index, :show]
 
       get "transactions/find", to: "transactions#find"

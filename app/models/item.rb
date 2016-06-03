@@ -18,4 +18,10 @@ class Item < ActiveRecord::Base
       .order("sum(invoice_items.quantity) desc")
       .limit(item_count.to_i)
   end
+
+  def best_day
+    invoice_items.joins(:transactions).where("transactions.result = 'success'")
+      .order(quantity: :desc).take(2)
+      .first.invoice.created_at
+  end
 end

@@ -80,7 +80,7 @@ RSpec.describe Api::V1::InvoiceItemsController do
     end
 
     it "works for unit_price" do
-      get :find, unit_price: @invoice_item.unit_price, format: :json
+      get :find, unit_price: 3.00, format: :json
       invoice_hash = JSON.parse(response.body, symbolize_names: true)
       expect(invoice_hash[:item_id]).to eq @item.id
     end
@@ -137,7 +137,7 @@ RSpec.describe Api::V1::InvoiceItemsController do
     end
 
     it "works for unit_price" do
-      get :find_all, unit_price: @invoice_item.unit_price, format: :json
+      get :find_all, unit_price: 3.00, format: :json
       invoices_hash = JSON.parse(response.body, symbolize_names: true)
       expect(invoices_hash.map do |invoice|
         invoice[:item_id]

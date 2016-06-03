@@ -8,9 +8,10 @@ class Customer < ActiveRecord::Base
   end
 
   def favorite_merchant
-    binding.pry
-    Merchant.includes(:customers)
+    merchants.select("merchants.*, count(invoices.merchant_id) as inv_count")
+      .joins(invoices: :transactions).where("transactions.result = 'success'")
+      .group("merchants.id")
+      .order("inv_count desc")
+      .first
   end
 end
-
-# returns a merchant where the customer has conducted the most successful transactions
