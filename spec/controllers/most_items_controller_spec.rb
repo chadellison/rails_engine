@@ -20,7 +20,7 @@ RSpec.describe Api::V1::MostItemsController do
 
   describe "Get index" do
     it "shows a specified number of items ranked by number sold" do
-      get :index, item_count: 2, format: :json
+      get :index, quantity: 2, format: :json
       most_items_hash = JSON.parse(response.body, symbolize_names: true)
 
       expect(response).to have_http_status(:success)
