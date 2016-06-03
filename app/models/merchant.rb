@@ -21,4 +21,11 @@ class Merchant < ActiveRecord::Base
       .sort_by { |id, count| count }.last.first
     Customer.find(customer_id)
   end
+
+  def customers_with_pending_invoices
+    customer_ids = invoices.joins(:transactions)
+      .where("transactions.result = 'failed'")
+      .pluck(:customer_id)
+    Customer.where(id: customer_ids)
+  end
 end

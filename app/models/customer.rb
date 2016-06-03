@@ -1,7 +1,7 @@
 class Customer < ActiveRecord::Base
   has_many :invoices
-  has_many :transactions, through: :invoices #shoulda match
-  has_many :merchants, through: :invoices #shoulda match
+  has_many :transactions, through: :invoices
+  has_many :merchants, through: :invoices
 
   def transactions
     Transaction.where(invoice_id: invoices.pluck(:id))

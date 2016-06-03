@@ -31,7 +31,7 @@ RSpec.describe Api::V1::InvoiceItemsController do
 
       invoice_hash = JSON.parse(response.body, symbolize_names: true)
       expect(response).to have_http_status(:success)
-      expect(invoice_hash[:unit_price]).to eq "3.00"
+      expect(invoice_hash[:unit_price]).to eq 300
       expect(invoice_hash[:invoice_id]).to eq @invoice.id
     end
   end
