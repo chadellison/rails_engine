@@ -12,7 +12,7 @@ RSpec.describe Api::V1::HighestSalesDateController do
     invoice4 = Invoice.create(merchant_id: merchant.id, created_at: Date.today + 1)
     invoice_item1 = InvoiceItem.create(item_id: @item.id, invoice_id: invoice1.id, quantity: 2)
     invoice_item2 = InvoiceItem.create(item_id: @item.id, invoice_id: invoice2.id, quantity: 2)
-    invoice_item3 = InvoiceItem.create(item_id: @item.id, invoice_id: invoice3.id, quantity: 2)
+    invoice_item3 = InvoiceItem.create(item_id: @item.id, invoice_id: invoice3.id, quantity: 3)
     invoice_item4 = InvoiceItem.create(item_id: @item.id, invoice_id: invoice4.id, quantity: 2)
 
     Transaction.create(invoice_id: invoice1.id, result: "success")
