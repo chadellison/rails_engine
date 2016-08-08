@@ -20,8 +20,10 @@ class Item < ActiveRecord::Base
   end
 
   def best_day
-    invoice_items.joins(:transactions).where("transactions.result = 'success'")
-      .order(quantity: :desc).take(2)
-      .first.invoice.created_at
+    best_invoice_items = invoice_items.joins(:transactions)
+      .where("transactions.result = 'success'")
+      .order(quantity: :desc)
+    best_invoice_items.where(quantity: best_invoice_items.first.quantity)
+      .map(&:invoice).max_by(&:created_at).created_at
   end
 end
