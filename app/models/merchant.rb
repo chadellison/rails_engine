@@ -30,4 +30,10 @@ class Merchant < ActiveRecord::Base
       .pluck(:customer_id)
     Customer.where(id: customer_ids)
   end
+
+  def self.rank_by_items(count)
+    # sort the merchants by number of items sold in desc order
+    binding.pry
+    # grab the first x count of them
+  end
 end
