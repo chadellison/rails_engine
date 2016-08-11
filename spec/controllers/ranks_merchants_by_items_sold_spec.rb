@@ -23,6 +23,11 @@ RSpec.describe Api::V1::MerchantRankedByItemsController do
       invoice3 = Invoice.create
       invoice4 = Invoice.create
 
+      invoice1.transactions.create(result: "success")
+      invoice2.transactions.create(result: "success")
+      invoice3.transactions.create(result: "success")
+      invoice4.transactions.create(result: "success")
+
       invoice1.invoice_items.create(quantity: 2)
       invoice2.invoice_items.create(quantity: 3)
       invoice3.invoice_items.create(quantity: 1)
