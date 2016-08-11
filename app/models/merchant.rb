@@ -30,4 +30,10 @@ class Merchant < ActiveRecord::Base
       .pluck(:customer_id)
     Customer.where(id: customer_ids)
   end
+
+  def self.rank_by_items(count)
+    joins(invoice_items: :transactions).where("transactions.result = 'success'")
+      .group(:id).order('sum(invoice_items.quantity) DESC')
+      .limit(count)
+  end
 end
