@@ -33,7 +33,10 @@ class Merchant < ActiveRecord::Base
 
   def self.rank_by_items(count)
     # sort the merchants by number of items sold in desc order
-    binding.pry
+    # binding.pry
     # grab the first x count of them
+    # binding.pry
+    # all.sort_by do |m| m.invoice_items.map(&:quantity).reduce(0, :+) end.reverse[0...count.to_i]
+    all.sort_by do |m| m.invoice_items.select { |i| i.transactions.all? { |t| t.result == "success" }}.map(&:quantity).reduce(0, :+) end.reverse[0...count.to_i]
   end
 end

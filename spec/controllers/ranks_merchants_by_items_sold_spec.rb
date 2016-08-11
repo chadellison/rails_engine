@@ -33,15 +33,14 @@ RSpec.describe Api::V1::MerchantRankedByItemsController do
       merchant3.invoices = [invoice3]
       merchant4.invoices = [invoice4]
 
-      get :index, quantity: 4, format: :json
+      get :index, quantity: 3, format: :json
+      expect(response).to have_http_status(:success)
       merchant_hash = JSON.parse(response.body, symbolize_names: true)
 
-      expect(response).to have_http_status(:success)
-      binding.pry
       expect(merchant_hash.first[:name]).to eq "name4"
       expect(merchant_hash[1][:name]).to eq "name2"
-      expect(merchant_hash[2][:name]).to eq "name1"
-      expect(merchant_hash.last[:name]).to eq "name3"
+      expect(merchant_hash.last[:name]).to eq "name1"
+      expect(merchant_hash.count).to eq 3
     end
   end
 end
