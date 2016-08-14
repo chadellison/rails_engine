@@ -24,7 +24,8 @@ Rails.application.routes.draw do
       get "merchants/:id/revenue",                         to: "merchant_total_revenue#show"
       get "merchants/:id/favorite_customer",               to: "merchant_favorite_customers#show"
       get "merchants/:id/customers_with_pending_invoices", to: "pending_invoices#index"
-      get "/merchants/most_items",                         to: "merchant_ranked_by_items#index"
+      get "merchants/most_items",                         to: "merchant_ranked_by_items#index"
+      get "merchants/revenue",                     to: "merchant_revenue_by_date#show"
 
       resources :merchants, only: [:index, :show]
 

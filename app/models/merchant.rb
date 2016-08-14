@@ -18,6 +18,16 @@ class Merchant < ActiveRecord::Base
       .sum("unit_price * quantity").to_s.insert(-3, ".")
   end
 
+  def self.revenue_by_date(date)
+
+    all.reduce(0) do |sum, merchant|
+      # binding.pry
+      sum + merchant.invoices.where(created_at: date).joins(:invoice_items, :transactions).where(transactions: {result: "success"}).where(merchant_id: merchant.id).sum("unit_price * quantity")
+
+      # sum + merchant.total_revenue(date).to_i
+    end.to_s.insert(-3, ".")
+  end
+
   def favorite_customer
     customers.select("customers.*, count(invoices.customer_id) as inv_count")
       .joins(invoices: :transactions).where("transactions.result = 'success'")
