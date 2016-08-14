@@ -23,8 +23,7 @@ RSpec.describe Api::V1::MerchantRevenueByDateController do
 
     get :show, format: :json, date: today
     revenue_hash = JSON.parse(response.body, symbolize_names: true)
-
     expect(response).to have_http_status :success
-    expect(revenue_hash[:revenue]).to eq "44.00"
+    expect(revenue_hash[:total_revenue]).to eq "44.00"
   end
 end
