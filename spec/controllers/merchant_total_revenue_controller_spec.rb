@@ -32,7 +32,7 @@ RSpec.describe Api::V1::MerchantTotalRevenueController do
     end
   end
 
-  describe "Get index" do
+  describe "Get show" do
     it "shows a merchant's total revenue by an invoice date" do
       get :show, id: @merchant.id, date: @invoice2.created_at, format: :json
 
